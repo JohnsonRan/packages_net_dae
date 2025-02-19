@@ -5,12 +5,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dae
-PKG_VERSION:=0.9.0
-PKG_RELEASE:=2
+PKG_VERSION:=2025.02.19
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).zip
-PKG_SOURCE_URL:=https://github.com/daeuniverse/dae/releases/download/v$(PKG_VERSION)/dae-full-src.zip?
-PKG_HASH:=b631e2cc729f28410f5ccf584de18cf6a839c4a313d694df5e326377f6435ab1
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/daeuniverse/dae.git
+PKG_SOURCE_VERSION:=e7c24976bf265f7fed72131150a61da53c0de599
+PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=AGPL-3.0-only
 PKG_LICENSE_FILE:=LICENSE
@@ -29,7 +30,7 @@ GO_PKG_TAGS:=trace
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/bpf.mk
-include ../../lang/golang/golang-package.mk
+include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
 
 UNZIP_CMD:=unzip -q -d $(PKG_BUILD_DIR) $(DL_DIR)/$(PKG_SOURCE)
 
