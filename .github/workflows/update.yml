@@ -34,8 +34,8 @@ jobs:
         sed -i "s/PKG_VERSION:=.*/PKG_VERSION:=${today}/" Makefile
         sed -i "s/PKG_SOURCE_VERSION:=.*/PKG_SOURCE_VERSION:=${commit_hash}/" Makefile
         
-        # 检查是否有变更
-        if ! git diff --quiet; then
+        new_hash=$(grep "PKG_SOURCE_VERSION:=" Makefile | cut -d'=' -f2)
+        if [ "$old_hash" != "$new_hash" ]; then
           echo "has_changes=true" >> $GITHUB_OUTPUT
         else
           echo "has_changes=false" >> $GITHUB_OUTPUT
